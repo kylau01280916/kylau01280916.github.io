@@ -28,7 +28,7 @@
   const languageNames = { en: 'English', 'zh-Hant': '繁體中文', 'zh-Hans': '简体中文' };
   const translations = {
     en: {
-      '众屿科技 · 众屿云峦舍': 'ARCHIPELAGO Technology X · Cloud Ridge House'
+      '众屿科技 · 众屿云峦舍': 'ARCHIPELAGO · Cloud Ridge House'
     },
     'zh-Hant': {
       'Skip to main content': '跳至主要內容', 'About': '自我介紹', 'Education': '學歷', 'Skills': '技能', 'Projects': '項目', 'Contact': '聯絡',
@@ -111,16 +111,21 @@
     const heroIntro = document.querySelector('.hero-intro');
     if (heroIntro) {
       const localizedIntro = {
-        en: 'A BBA-SCM student at The Hang Seng University of Hong Kong and CEO of <strong>ARCHIPELAGO Technology X · Cloud Ridge House</strong>. I explore how supply chains, entrepreneurship, and technology connect to create real-world value.',
+        en: 'A BBA-SCM student at The Hang Seng University of Hong Kong and CEO of <strong>ARCHIPELAGO · Cloud Ridge House</strong>. I explore how supply chains, entrepreneurship, and technology connect to create real-world value.',
         'zh-Hant': '我現為香港恒生大學供應鏈管理工商管理學士生，亦擔任<strong>眾嶼科技 X · 眾嶼雲巒舍</strong>行政總裁。我致力探索供應鏈、創業與科技如何結合，創造實際價值。',
         'zh-Hans': '我现为香港恒生大学供应链管理工商管理学士生，亦担任<strong>众屿科技 X · 众屿云峦舍</strong>首席执行官。我致力探索供应链、创业与科技如何结合，创造实际价值。'
       };
       heroIntro.innerHTML = localizedIntro[currentLanguage];
     }
+    document.querySelectorAll('[data-company-name]').forEach((element) => {
+      element.textContent = currentLanguage === 'en'
+        ? 'ARCHIPELAGO · Cloud Ridge House'
+        : currentLanguage === 'zh-Hant' ? '眾嶼科技 X · 眾嶼雲巒舍' : '众屿科技 X · 众屿云峦舍';
+    });
     document.documentElement.lang = currentLanguage;
     document.title = pageTitles[document.body.dataset.page]?.[currentLanguage] || pageTitles.home[currentLanguage];
     document.querySelector('meta[name="description"]').content = currentLanguage === 'en'
-      ? 'Personal website of Samuel Lau, a BBA-SCM student at HSUHK and CEO of 众屿科技 X · 众屿云峦舍.'
+      ? 'Personal website of Samuel Lau, a BBA-SCM student at HSUHK and CEO of ARCHIPELAGO · Cloud Ridge House.'
       : currentLanguage === 'zh-Hant' ? 'Samuel Lau 的個人網站，香港恒生大學供應鏈管理學生及眾嶼科技 X · 眾嶼雲巒舍行政總裁。'
         : 'Samuel Lau 的个人网站，香港恒生大学供应链管理学生及众屿科技 X · 众屿云峦舍首席执行官。';
     document.querySelectorAll('[aria-label]').forEach((element) => {
@@ -143,7 +148,7 @@
   languageButtons.forEach((button) => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
 
   const roleSets = {
-    en: ['BBA-SCM Student', 'CEO of ARCHIPELAGO Technology X · Cloud Ridge House', 'Aspiring Supply Chain Leader', 'Lifelong Learner'],
+    en: ['BBA-SCM Student', 'CEO of ARCHIPELAGO · Cloud Ridge House', 'Aspiring Supply Chain Leader', 'Lifelong Learner'],
     'zh-Hant': ['供應鏈管理工商管理學士生', '眾嶼科技 X · 眾嶼雲巒舍行政總裁', '立志成為供應鏈領袖', '終身學習者'],
     'zh-Hans': ['供应链管理工商管理学士生', '众屿科技 X · 众屿云峦舍首席执行官', '立志成为供应链领袖', '终身学习者']
   };
